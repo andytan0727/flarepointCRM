@@ -1,6 +1,6 @@
 {
-    "name": "bottelet/flarepoint",
-    "description": "Flarepoint is a free, open-source and self-hosted CRM platform based of Laravel 5",
+    "name": "andytan0727/flarepointCRM",
+    "description": "A CRM system based on Laravel 5 & Vuejs",
     "keywords": [
         "laravel",
         "CRM",
@@ -12,6 +12,11 @@
         {
             "name": "Casper Bottelet",
             "email": "cbottelet@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Andy Tan",
+            "email": "andytan0727@gmail.com",
             "role": "Developer"
         }
     ],
