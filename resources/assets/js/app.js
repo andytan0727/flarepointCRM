@@ -18,84 +18,87 @@ import 'element-ui/lib/theme-default/index.css';
 
 Vue.use(ElementUI);
 
-//Vue.component('graphline', require('./components/Graphline.vue'));
 $('.dropdown.keep-open').on({
-    "shown.bs.dropdown": function() { this.closable = false; },
-    "click":             function() { this.closable = true; },
-    "hide.bs.dropdown":  function() { return this.closable; }
+  'shown.bs.dropdown': () => {
+    this.closable = false;
+  },
+  click: () => {
+    this.closable = true;
+  },
+  'hide.bs.dropdown': () => this.closable,
 });
 
-
-$("#collapse1").click(function() {
-	$(".box-body1").toggleClass("hide");
+$('#collapse1').click(function() {
+  $('.box-body1').toggleClass('hide');
 });
 
 //Sidebar menu
-$("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-        $(".sidebar-brand").toggleClass("shownone");
-    });
-        
-$(document).ready( function() {
-  $('.dropdown-toggle').dropdown();
-    $(".list-group-item").click(function(){
-        console.log("test");
-
-        if ($('.list-group-item').hasClass('collapsed')) {
-            console.log("some text");
-            $(this).find('.sidebar-arrow').toggleClass("arrow-up").toggleClass("arrow-down");
-        } else {
-            $(this).find('.sidebar-arrow').toggleClass("arrow-down").toggleClass("arrow-up");
-        }
-    });
+$('#menu-toggle').click(function(e) {
+  e.preventDefault();
+  $('#wrapper').toggleClass('toggled');
+  $('.sidebar-brand').toggleClass('shownone');
 });
 
 $(document).ready(function() {
-    $('body').on('click', '.menu-txt-toggle', function() {
-         $("body #wrapper").toggleClass("myNavmenu-icons");  
-    });
-    
-    $("html").click(function(evt) {
-        var target = $(evt.target);
-        if (target.hasClass("mobile-toggle")) {
-        //if($('body #wrapper').hasClass('myNavmenu-icons')) {  } else {
-          setTimeout(function() {
-            $("body #wrapper").toggleClass("big-menu");
-          }, 0);
-        } else {
-        
-       if(target.id == "myNavmenu")
-          return;
-        //For descendants of #myNavmenu being clicked, remove this check if you do not want to put constraint on descendants.
-       if($(target).closest('#myNavmenu').length)
-          return;
-        if($(target).closest('#mobile-toggle').length) {
-        //Do processing of click event here for every element except with id #myNavmenu
-        $("body #wrapper").toggleClass("big-menu");
-        } else {
-        $("body #wrapper").removeClass("big-menu");
-        }
-        }
-    });
-});
-$(window).on('resize', function(){
-      var win = $(this); //this = window
-      if (win.width() >= 991) { $("body #wrapper").removeClass("big-menu");
-      //$("body .navbar-default .navbar-toggle").trigger("click");
-      }
+  $('.dropdown-toggle').dropdown();
+
+  $('.list-group-item').click(function() {
+    if ($('.list-group-item').hasClass('collapsed')) {
+      $(this)
+        .find('.sidebar-arrow')
+        .toggleClass('arrow-up')
+        .toggleClass('arrow-down');
+    } else {
+      $(this)
+        .find('.sidebar-arrow')
+        .toggleClass('arrow-down')
+        .toggleClass('arrow-up');
+    }
+  });
 });
 
-$('.search-select')
-  .dropdown({
-    direction: 'upward'
-  })
-;
-var app = new Vue({
-    el: '#wrapper',
-    components: {
-      graphline,
-      doughnut,
-      message
+$(document).ready(function() {
+  $('body').on('click', '.menu-txt-toggle', function() {
+    $('body #wrapper').toggleClass('myNavmenu-icons');
+  });
+
+  $('html').click(function(evt) {
+    const target = $(evt.target);
+    if (target.hasClass('mobile-toggle')) {
+      setTimeout(function() {
+        $('body #wrapper').toggleClass('big-menu');
+      }, 0);
+    } else {
+      if (target.id == 'myNavmenu') return;
+      //For descendants of #myNavmenu being clicked, remove this check if you do not want to put constraint on descendants.
+      if ($(target).closest('#myNavmenu').length) return;
+      if ($(target).closest('#mobile-toggle').length) {
+        //Do processing of click event here for every element except with id #myNavmenu
+        $('body #wrapper').toggleClass('big-menu');
+      } else {
+        $('body #wrapper').removeClass('big-menu');
+      }
     }
+  });
+});
+
+$(window).on('resize', function() {
+  const win = $(this); //this = window
+  if (win.width() >= 991) {
+    $('body #wrapper').removeClass('big-menu');
+    //$("body .navbar-default .navbar-toggle").trigger("click");
+  }
+});
+
+$('.search-select').dropdown({
+  direction: 'upward',
+});
+
+const app = new Vue({
+  el: '#wrapper',
+  components: {
+    graphline,
+    doughnut,
+    message,
+  },
 });
