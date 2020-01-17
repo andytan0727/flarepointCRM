@@ -171,7 +171,7 @@ class TaskRepository implements TaskRepositoryContract
     /**
      * @return mixed
      */
-    public function createdTasksMothly()
+    public function createdTasksMonthly()
     {
         return DB::table('tasks')
             ->select(DB::raw('count(*) as month, created_at'))
@@ -182,7 +182,7 @@ class TaskRepository implements TaskRepositoryContract
     /**
      * @return mixed
      */
-    public function completedTasksMothly()
+    public function completedTasksMonthly()
     {
         return DB::table('tasks')
             ->select(DB::raw('count(*) as month, updated_at'))

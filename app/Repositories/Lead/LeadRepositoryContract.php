@@ -18,7 +18,7 @@ interface LeadRepositoryContract
 
     public function allCompletedLeads();
 
-    public function percantageCompleted();
+    public function percentageCompleted();
 
     public function completedLeadsToday();
 

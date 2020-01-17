@@ -48,7 +48,7 @@ class PagesController extends Controller
         return [
             'allleads'             => $this->leads->leads(),
             'allCompletedLeads'    => $this->leads->allCompletedLeads(),
-            'totalPercentageLeads' => $this->leads->percantageCompleted(),
+            'totalPercentageLeads' => $this->leads->percentageCompleted(),
         ];
     }
 
@@ -120,7 +120,7 @@ class PagesController extends Controller
         $taskCreated = [];
 
         // Created tasks
-        foreach ($this->tasks->createdTasksMothly() as $task) {
+        foreach ($this->tasks->createdTasksMonthly() as $task) {
             $createdTaskEachMonths[] = date('F', strTotime($task->created_at));
             $taskCreated[] = $task->month;
         }
@@ -129,7 +129,7 @@ class PagesController extends Controller
         $completedTaskEachMonths = [];
         $taskCompleted = [];
 
-        foreach ($this->tasks->completedTasksMothly() as $tasks) {
+        foreach ($this->tasks->completedTasksMonthly() as $tasks) {
             $completedTaskEachMonths[] = date('F', strTotime($tasks->updated_at)) ;
             $taskCompleted[] = $tasks->month;
         }
@@ -145,7 +145,7 @@ class PagesController extends Controller
     private function monthlyCompletedTasks()
     {
         return [
-            'completedTasksMonthly' => $this->tasks->completedTasksMothly(),
+            'completedTasksMonthly' => $this->tasks->completedTasksMonthly(),
             'taskCompletedThisMonth' => $this->tasks->completedTasksThisMonth(),
         ];
     }

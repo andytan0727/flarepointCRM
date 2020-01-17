@@ -22,9 +22,9 @@ interface TaskRepositoryContract
 
     public function percentageCompleted();
 
-    public function createdTasksMothly();
+    public function createdTasksMonthly();
 
-    public function completedTasksMothly();
+    public function completedTasksMonthly();
 
     public function createdTasksToday();
 

@@ -115,7 +115,7 @@ class LeadRepository implements LeadRepositoryContract
     /**
      * @return float|int
      */
-    public function percantageCompleted()
+    public function percentageCompleted()
     {
         if (!$this->leads() || !$this->allCompletedLeads()) {
             $totalPercentageLeads = 0;
