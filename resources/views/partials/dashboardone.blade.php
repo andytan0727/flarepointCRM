@@ -1,15 +1,14 @@
-<br/><br/>
+<br /><br />
 <div class="col-sm-6">
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h4 class="box-title"
-            >
+            <h4 class="box-title">
                 {{ __('Tasks each month') }}
             </h4>
             <div class="box-tools pull-right">
                 <button type="button" id="collapse1" class="btn btn-box-tool" data-toggle="collapse"
-                        data-target="#collapseOne"><i id="toggler1" class="fa fa-minus"></i>
+                    data-target="#collapseOne"><i id="toggler1" class="fa fa-minus"></i>
                 </button>
             </div>
         </div>
@@ -17,21 +16,20 @@
             <div class="box-body">
                 <div>
                     <graphline class="chart" :labels="{{json_encode($createdTaskEachMonths)}}"
-                               :values="{{json_encode($taskCreated)}}"
-                               :valuesextra="{{json_encode($taskCompleted)}}"></graphline>
+                        :values="{{json_encode($taskCreated)}}" :valuesextra="{{json_encode($taskCompleted)}}">
+                    </graphline>
                 </div>
             </div>
         </div>
     </div>
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h4 class="box-title"
-            >
-               {{ __('Lead each month') }}
+            <h4 class="box-title">
+                {{ __('Lead each month') }}
             </h4>
             <div class="box-tools pull-right">
                 <button type="button" id="collapse2" class="btn btn-box-tool" data-toggle="collapse"
-                        data-target="#collapseTwo"><i id="toggler2" class="fa fa-minus"></i>
+                    data-target="#collapseTwo"><i id="toggler2" class="fa fa-minus"></i>
                 </button>
             </div>
         </div>
@@ -39,8 +37,8 @@
             <div class="box-body">
                 <div>
                     <graphline class="chart" :labels="{{json_encode($createdLeadEachMonths)}}"
-                               :values="{{json_encode($leadCreated)}}"
-                               :valuesextra="{{json_encode($leadsCompleted)}}"></graphline>
+                        :values="{{json_encode($leadCreated)}}" :valuesextra="{{json_encode($leadsCompleted)}}">
+                    </graphline>
 
                 </div>
             </div>
@@ -61,9 +59,9 @@
                 <div class="progress">
                     <div class="progress-bar" style="width: {{$totalPercentageTasks}}%"></div>
                 </div>
-                  <span class="progress-description">
+                <span class="progress-description">
                     {{number_format($totalPercentageTasks, 0)}}% {{ __('Completed') }}
-                  </span>
+                </span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -80,9 +78,9 @@
                 <div class="progress">
                     <div class="progress-bar" style="width: {{$totalPercentageLeads}}%"></div>
                 </div>
-                  <span class="progress-description">
+                <span class="progress-description">
                     {{number_format($totalPercentageLeads, 0)}}% {{ __('Completed') }}
-                  </span>
+                </span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -92,8 +90,7 @@
 
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h4 class="box-title"
-                >
+                <h4 class="box-title">
                     {{ __('Users') }}
                 </h4>
                 <div class="box-tools pull-right">
@@ -103,23 +100,22 @@
             <div id="collapseOne" class="panel-collapse">
 
                 @foreach($users as $user)
-                    <div class="col-lg-1">
-                        @if($user->isOnline())
-                            <i class="dot-online" data-toggle="tooltip" title="Online" data-placement="left"></i>
+                <div class="col-lg-1">
+                    @if($user->isOnline())
+                    <i class="dot-online" data-toggle="tooltip" title="Online" data-placement="left"></i>
+                    @else
+                    <i class="dot-offline" data-toggle="tooltip" title="Offline" data-placement="left"></i>
+                    @endif
+                    <a href="{{route('users.show', $user->id)}}">
+                        <img class="small-profile-picture" data-toggle="tooltip" title="{{$user->name}}"
+                            data-placement="left" @if($user->image_path != "")
+                        src="images/{{$companyname}}/{{$user->image_path}}"
                         @else
-                            <i class="dot-offline" data-toggle="tooltip" title="Offline" data-placement="left"></i>
-                        @endif
-                        <a href="{{route('users.show', $user->id)}}">
-                            <img class="small-profile-picture" data-toggle="tooltip" title="{{$user->name}}"
-                                 data-placement="left"
-                                 @if($user->image_path != "")
-                                 src="images/{{$companyname}}/{{$user->image_path}}"
-                                 @else
-                                 src="images/default_avatar.jpg"
-                                    @endif />
-                        </a>
+                        src="images/default_avatar.jpg"
+                        @endif />
+                    </a>
 
-                    </div>
+                </div>
 
                 @endforeach
 
@@ -191,4 +187,3 @@
     </div>
 </div>
 <!-- /.info-box -->
-    

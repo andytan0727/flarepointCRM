@@ -157,7 +157,7 @@ class TaskRepository implements TaskRepositoryContract
     /**
      * @return float|int
      */
-    public function percantageCompleted()
+    public function percentageCompleted()
     {
         if (!$this->tasks() || !$this->allCompletedTasks()) {
             $totalPercentageTasks = 0;

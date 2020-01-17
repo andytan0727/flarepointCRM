@@ -20,7 +20,7 @@ interface TaskRepositoryContract
 
     public function allCompletedTasks();
 
-    public function percantageCompleted();
+    public function percentageCompleted();
 
     public function createdTasksMothly();
 

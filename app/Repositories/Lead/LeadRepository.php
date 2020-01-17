@@ -162,7 +162,7 @@ class LeadRepository implements LeadRepositoryContract
     /**
      * @return mixed
      */
-    public function createdLeadsMonthly()
+    public function completedLeadsMonthly()
     {
         return DB::table('leads')
             ->select(DB::raw('count(*) as month, updated_at'))
@@ -174,7 +174,7 @@ class LeadRepository implements LeadRepositoryContract
     /**
      * @return mixed
      */
-    public function completedLeadsMonthly()
+    public function createdLeadsMonthly()
     {
         return DB::table('leads')
             ->select(DB::raw('count(*) as month, created_at'))
