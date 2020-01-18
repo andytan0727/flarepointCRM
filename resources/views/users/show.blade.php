@@ -1,75 +1,75 @@
 @extends('layouts.master')
-    @section('content')
-    @include('partials.userheader')
+@section('content')
+@include('partials.userheader')
 <div class="col-sm-8">
-  <el-tabs active-name="tasks" style="width:100%">
-    <el-tab-pane label="{{__('Tasks')}}" name="tasks">
-        <table class="table table-striped" id="tasks-table">
-        <h3>{{ __('Tasks assigned') }}</h3>
-            <thead>
+    <el-tabs active-name="tasks" style="width:100%">
+        <el-tab-pane label="{{__('Tasks')}}" name="tasks">
+            <table class="table table-striped" id="tasks-table">
+                <h3>{{ __('Tasks assigned') }}</h3>
+                <thead>
                     <th>{{ __('Title') }}</th>
                     <th>{{ __('Client') }}</th>
                     <th>{{ __('Created at') }}</th>
                     <th>{{ __('Deadline') }}</th>
                     <th>
                         <select name="status" id="status-task">
-                        <option value="" disabled selected>{{ __('Status') }}</option>
+                            <option value="" disabled selected>{{ __('Status') }}</option>
                             <option value="open">{{__('Open')}}</option>
                             <option value="closed">{{__('Closed')}}</option>
                             <option value="all">{{__('All')}}</option>
                         </select>
                     </th>
-                </tr>
-            </thead>
-        </table>
-    </el-tab-pane>
-    <el-tab-pane label="{{__('Leads')}}" name="leads">
-      <table class="table table-striped">
-        <table class="table table-striped" id="leads-table">
-                <h3>{{ __('Leads assigned') }}</h3>
-                <thead>
-                <tr>
-                    <th>{{ __('Title') }}</th>
-                    <th>{{ __('Client') }}</th>
-                    <th>{{ __('Created at') }}</th>
-                    <th>{{ __('Deadline') }}</th>
-                    <th>
-                        <select name="status" id="status-lead">
-                        <option value="" disabled selected>{{ __('Status') }}</option>
-                            <option value="open">Open</option>
-                            <option value="closed">Closed</option>
-                            <option value="all">All</option>
-                        </select>
-                    </th>
-                </tr>
+                    </tr>
                 </thead>
             </table>
-    </el-tab-pane>
-    <el-tab-pane label="{{__('Clients')}}" name="clients">
-         <table class="table table-striped" id="clients-table">
+        </el-tab-pane>
+        <el-tab-pane label="{{__('Leads')}}" name="leads">
+            <table class="table table-striped">
+                <table class="table table-striped" id="leads-table">
+                    <h3>{{ __('Leads assigned') }}</h3>
+                    <thead>
+                        <tr>
+                            <th>{{ __('Title') }}</th>
+                            <th>{{ __('Client') }}</th>
+                            <th>{{ __('Created at') }}</th>
+                            <th>{{ __('Deadline') }}</th>
+                            <th>
+                                <select name="status" id="status-lead">
+                                    <option value="" disabled selected>{{ __('Status') }}</option>
+                                    <option value="open">Open</option>
+                                    <option value="closed">Closed</option>
+                                    <option value="all">All</option>
+                                </select>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+        </el-tab-pane>
+        <el-tab-pane label="{{__('Clients')}}" name="clients">
+            <table class="table table-striped" id="clients-table">
                 <h3>{{ __('Clients assigned') }}</h3>
                 <thead>
-                <tr>
-                    <th>{{ __('Company') }}</th>
-                    <th>{{ __('Primary number') }}</th>
-                    <th>{{ __('Email') }}</th>
-                </tr>
+                    <tr>
+                        <th>{{ __('Company') }}</th>
+                        <th>{{ __('Primary number') }}</th>
+                        <th>{{ __('Email') }}</th>
+                    </tr>
                 </thead>
             </table>
-    </el-tab-pane>
-  </el-tabs>
-  </div>
-  <div class="col-sm-4">
-  <h4>{{ __('Tasks') }}</h4>
-<doughnut :statistics="{{$task_statistics}}"></doughnut>
-<h4>{{ __('Leads') }}</h4>
-<doughnut :statistics="{{$lead_statistics}}"></doughnut>
-  </div>
+        </el-tab-pane>
+    </el-tabs>
+</div>
+<div class="col-sm-4">
+    <h4>{{ __('Tasks') }}</h4>
+    <doughnut :statistics="{{$taskStatistics}}"></doughnut>
+    <h4>{{ __('Leads') }}</h4>
+    <doughnut :statistics="{{$leadStatistics}}"></doughnut>
+</div>
 
-   @stop
+@stop
 @push('scripts')
-        <script>
-        $('#pagination a').on('click', function (e) {
+<script>
+    $('#pagination a').on('click', function (e) {
             e.preventDefault();
             var url = $('#search').attr('action') + '?page=' + page;
             $.post(url, $('#search').serialize(), function (data) {
@@ -145,5 +145,5 @@
                     }
               });
           });
-        </script>
+</script>
 @endpush

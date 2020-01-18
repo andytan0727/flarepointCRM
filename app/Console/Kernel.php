@@ -13,8 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\Inspire::class,
-        Commands\Test::class,
+        // Commands\Inspire::class,
+        // Commands\Test::class,
     ];
 
     /**
@@ -26,5 +26,15 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+    }
+
+    /**
+       * Register the commands for the application.
+       *
+       * @return void
+       */
+    protected function commands()
+    {
+        $this->load(__DIR__.'/Commands');
     }
 }

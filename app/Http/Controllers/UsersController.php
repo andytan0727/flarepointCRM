@@ -197,11 +197,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view('users.show')
-            ->withUser($this->users->find($id))
-            ->withCompanyname($this->settings->getCompanyName())
-            ->withTaskStatistics($this->tasks->totalOpenAndClosedTasks($id))
-            ->withLeadStatistics($this->leads->totalOpenAndClosedLeads($id));
+        return view('users.show')->with([
+            'user'           => $this->users->find($id),
+            'companyname'    => $this->settings->getCompanyName(),
+            'taskStatistics' => $this->tasks->totalOpenAndClosedTasks($id),
+            'leadStatistics' => $this->leads->totalOpenAndClosedLeads($id)
+        ]);
     }
 
     /**
