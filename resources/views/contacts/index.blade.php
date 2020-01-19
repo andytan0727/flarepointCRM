@@ -26,10 +26,10 @@
             serverSide: true,
             ajax: '{!! route('contacts.data') !!}',
             columns: [
-                {data: 'namelink', name: 'name'},
+                {data: 'name_link', name: 'name'},
                 {data: 'job_title', name: 'job_title'},
                 {data: 'client_name', name: 'client_name'},
-                {data: 'emaillink', name: 'email'},
+                {data: 'email_link', name: 'email'},
                 {data: 'primary_number', name: 'primary_number',},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false},
             ]
