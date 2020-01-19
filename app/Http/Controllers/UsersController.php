@@ -47,8 +47,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('users.index')
-            ->with('users', User::orderBy('name')->get()->pluck('name', 'id'));
+        return view('users.index', [
+            'users' => User::orderBy('name')->get()->pluck('name', 'id')
+        ]);
     }
 
     public function users()
@@ -173,9 +174,10 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('users.create')
-            ->withRoles($this->roles->listAllRoles())
-            ->withDepartments($this->departments->listAllDepartments());
+        return view('users.create', [
+            'roles'       => $this->roles->listAllRoles(),
+            'departments' => $this->departments->listAllDepartments()
+        ]);
     }
 
     /**
@@ -212,10 +214,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('users.edit')
-            ->withUser($this->users->find($id))
-            ->withRoles($this->roles->listAllRoles())
-            ->withDepartments($this->departments->listAllDepartments());
+        return view('users.edit', [
+            'user'        => $this->users->find($id),
+            'roles'       => $this->roles->listAllRoles(),
+            'departments' => $this->departments->listAllDepartments()
+        ]);
     }
 
     /**
@@ -243,7 +246,9 @@ class UsersController extends Controller
         $id   = $request->id;
         $user = User::with('clients', 'tasks', 'leads')->findOrFail($id);
 
-        if ($request->user_clients == $id || $request->user_tasks == $id || $request->user_leads == $id) {
+        if ($request->user_clients == $id ||
+            $request->user_tasks == $id ||
+            $request->user_leads == $id) {
             Session()->flash('flash_message_warning', 'You may not reassign clients, leads or tasks to the user you are deleting.');
         } else {
             // are we keeping her tasks?

@@ -134,9 +134,10 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        return view('clients.create')
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withIndustries($this->clients->listAllIndustries());
+        return view('clients.create', [
+            'users'      => $this->users->getAllUsersWithDepartments(),
+            'industries' => $this->clients->listAllIndustries()
+        ]);
     }
 
     /**
@@ -171,10 +172,11 @@ class ClientsController extends Controller
      */
     public function show($id)
     {
-        return view('clients.show')
-            ->withClient($this->clients->find($id))
-            ->withInvoices($this->clients->getInvoices($id))
-            ->withUsers($this->users->getAllUsersWithDepartments());
+        return view('clients.show', [
+            'client'   => $this->clients->find($id),
+            'invoices' => $this->clients->getInvoices($id),
+            'users'    => $this->users->getAllUsersWithDepartments()
+        ]);
     }
 
     /**
@@ -186,10 +188,11 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        return view('clients.edit')
-            ->withClient($this->clients->find($id))
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withIndustries($this->clients->listAllIndustries());
+        return view('clients.edit', [
+            'client'     => $this->clients->find($id),
+            'users'      => $this->users->getAllUsersWithDepartments(),
+            'industries' => $this->clients->listAllIndustries()
+        ]);
     }
 
     /**

@@ -26,8 +26,9 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        return view('departments.index')
-            ->withDepartment($this->departments->getAllDepartments());
+        return view('departments.index', [
+            'department' => $this->departments->getAllDepartments()
+        ]);
     }
 
     /**

@@ -113,9 +113,10 @@ class TasksController extends Controller
      */
     public function create()
     {
-        return view('tasks.create')
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withClients($this->clients->listAllClients());
+        return view('tasks.create', [
+            'users'   => $this->users->getAllUsersWithDepartments(),
+            'clients' => $this->clients->listAllClients()
+        ]);
     }
 
     /**
@@ -123,7 +124,7 @@ class TasksController extends Controller
      *
      * @return mixed
      */
-    public function store(StoreTaskRequest $request) // uses __contrust request
+    public function store(StoreTaskRequest $request) // uses __construct request
     {
         $getInsertedId = $this->tasks->create($request);
 
@@ -140,15 +141,16 @@ class TasksController extends Controller
      */
     public function show(Request $request, $id)
     {
-        return view('tasks.show')
-            ->withTasks($this->tasks->find($id))
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withInvoiceLines($this->tasks->getInvoiceLines($id))
-            ->withCompanyname($this->settings->getCompanyName());
+        return view('tasks.show', [
+            'tasks'        => $this->tasks->find($id),
+            'users'        => $this->users->getAllUsersWithDepartments(),
+            'invoiceLines' => $this->tasks->getInvoiceLines($id),
+            'companyname'  => $this->settings->getCompanyName()
+        ]);
     }
 
     /**
-     * Sees if the Settings from backend allows all to complete taks
+     * Sees if the Settings from backend allows all to complete tasks
      * or only assigned user. if only assigned user:.
      *
      * @param $id
@@ -158,7 +160,7 @@ class TasksController extends Controller
      *
      * @internal param $ [Auth]  $id Checks Logged in users id
      * @internal param $ [Model] $task->user_assigned_id Checks the id of the user assigned to the task
-     * If Auth and user_id allow complete else redirect back if all allowed excute
+     * If Auth and user_id allow complete else redirect back if all allowed execute
      * else stmt
      */
     public function updateStatus($id, Request $request)

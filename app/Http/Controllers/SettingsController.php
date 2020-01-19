@@ -33,10 +33,11 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        return view('settings.index')
-            ->withSettings($this->settings->getSetting())
-            ->withPermission($this->roles->allPermissions())
-            ->withRoles($this->roles->allRoles());
+        return view('settings.index', [
+            'settings'   => $this->settings->getSetting(),
+            'permission' => $this->roles->allPermissions(),
+            'roles'      => $this->roles->allRoles()
+        ]);
     }
 
     /**

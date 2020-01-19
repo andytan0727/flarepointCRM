@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('heading')
-    <h1>{{__('All Contacts')}}</h1>
+<h1>{{__('All Contacts')}}</h1>
 @stop
 
 @section('content')
-    <table class="table table-striped" id="contacts-table">
-        <thead>
+<table class="table table-striped" id="contacts-table">
+    <thead>
         <tr>
             <th>{{ __('Name') }}</th>
             <th>{{ __('Job Title') }}</th>
@@ -14,8 +14,8 @@
             <th>{{ __('Primary Number') }}</th>
             <th>{{ __('Actions') }}</th>
         </tr>
-        </thead>
-    </table>
+    </thead>
+</table>
 @stop
 
 @push('scripts')

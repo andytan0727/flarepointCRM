@@ -110,9 +110,10 @@ class LeadsController extends Controller
      */
     public function create()
     {
-        return view('leads.create')
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withClients($this->clients->listAllClients());
+        return view('leads.create', [
+            'users'   => $this->users->getAllUsersWithDepartments(),
+            'clients' => $this->clients->listAllClients()
+        ]);
     }
 
     /**
@@ -163,10 +164,11 @@ class LeadsController extends Controller
      */
     public function show($id)
     {
-        return view('leads.show')
-            ->withLead($this->leads->find($id))
-            ->withUsers($this->users->getAllUsersWithDepartments())
-            ->withCompanyname($this->settings->getCompanyName());
+        return view('leads.show', [
+            'lead'  => $this->leads->find($id),
+            'users' => $this->users->getAllUsersWithDepartments(),
+            'companyname' => $this->settings->getCompanyName()
+        ]);
     }
 
     /**

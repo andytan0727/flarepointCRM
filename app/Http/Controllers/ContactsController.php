@@ -10,7 +10,6 @@ use App\Repositories\Contact\ContactRepositoryContract;
 use App\Repositories\Setting\SettingRepositoryContract;
 use App\Repositories\User\UserRepositoryContract;
 use Datatables;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -52,14 +51,13 @@ class ContactsController extends Controller
     }
 
     /**
-     * Make json respnse for datatables.
+     * Make json response for datatables.
      *
      * @return mixed
      */
     public function anyData()
     {
         $contacts = Contact::select(['contacts.*', DB::raw('clients.name AS client_name')])->join('clients', 'contacts.client_id', '=', 'clients.id');
-        // $contacts = Contact::with('client')->select('contacts.*');
 
         $dt = Datatables::of($contacts)
             ->addColumn('namelink', function ($contacts) {
@@ -69,7 +67,7 @@ class ContactsController extends Controller
                 return '<a href="mailto:'.$contacts->email.'">'.$contacts->email.'</a>';
             });
 
-        // this looks wierd, but in order to keep the two buttons on the same line
+        // this looks weird, but in order to keep the two buttons on the same line
         // you have to put them both within the form tags if the Delete button is
         // enabled
         $actions = '';
@@ -92,7 +90,7 @@ class ContactsController extends Controller
     }
 
     /**
-     * Make json respnse for datatables.
+     * Make json response for datatables.
      *
      * @return mixed
      */
@@ -108,7 +106,7 @@ class ContactsController extends Controller
                 return '<a href="mailto:'.$contacts->email.'">'.$contacts->email.'</a>';
             });
 
-        // this looks wierd, but in order to keep the two buttons on the same line
+        // this looks weird, but in order to keep the two buttons on the same line
         // you have to put them both within the form tags if the Delete button is
         // enabled
         $actions = '';
@@ -137,8 +135,9 @@ class ContactsController extends Controller
      */
     public function create()
     {
-        return view('contacts.create')
-            ->withClients($this->clients->listAllClients());
+        return view('contacts.create', [
+            'clients' => $this->clients->listAllClients()
+        ]);
     }
 
     /**
@@ -177,9 +176,10 @@ class ContactsController extends Controller
      */
     public function edit($id)
     {
-        return view('contacts.edit')
-            ->withContact($this->contacts->find($id))
-            ->withClients($this->clients->listAllClients());
+        return view('contacts.edit', [
+            'contact' => $this->contacts->find($id),
+            'clients' => $this->clients->listAllClients()
+        ]);
     }
 
     /**

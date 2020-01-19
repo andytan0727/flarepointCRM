@@ -25,8 +25,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return view('roles.index')
-            ->withRoles($this->roles->allRoles());
+        return view('roles.index', [
+            'roles' => $this->roles->allRoles()
+        ]);
     }
 
     /**
