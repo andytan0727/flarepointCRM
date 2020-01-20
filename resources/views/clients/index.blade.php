@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('heading')
-    <h1>{{ __('All Clients') }}</h1>
+<h1>{{ __('All Clients') }}</h1>
 @stop
 
 @section('content')
 
-    <table class="table table-striped" id="clients-table">
-        <thead>
+<table class="table table-striped" id="clients-table">
+    <thead>
         <tr>
             <th>{{ __('Company') }}</th>
             <th>{{ __('Primary Number') }}</th>
@@ -14,8 +14,8 @@
             <th>{{ __('Salesperson') }}</th>
             <th>{{ __('Actions') }}</th>
         </tr>
-        </thead>
-    </table>
+    </thead>
+</table>
 
 @stop
 
@@ -29,9 +29,9 @@
             ajax: '{!! route('clients.data') !!}',
             columns: [
 
-                {data: 'namelink', name: 'name'},
+                {data: 'name_link', name: 'name'},
                 {data: 'primary_number', name: 'primary_number'},
-                {data: 'emaillink', name: 'primary_email'},
+                {data: 'email_link', name: 'primary_email'},
                 {data: 'salesperson', name: 'salesperson'},
                 {data: 'actions', name: 'actions', orderable: false, searchable: false},
 

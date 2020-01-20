@@ -69,13 +69,13 @@
 
 @push('scripts')
 <script>
-$(function () {
+    $(function () {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
         ajax: '{!! route('users.data') !!}',
         columns: [
-            {data: 'namelink', name: 'name'},
+            {data: 'name_link', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'work_number', name: 'work_number'},
             @if(Entrust::can('user-update'))

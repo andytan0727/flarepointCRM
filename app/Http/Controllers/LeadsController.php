@@ -63,10 +63,10 @@ class LeadsController extends Controller
      */
     public function anyData()
     {
-        $leads = Lead::select('leads.*')->where('status', 1)->get();
+        $leads = Lead::where('status', 1);
 
-        return Datatables::of($leads)
-            ->addColumn('titlelink', function ($leads) {
+        return datatables()->eloquent($leads)
+            ->addColumn('title_link', function ($leads) {
                 return '<a href="'.route('leads.show', $leads->id).'">'.$leads->title.'</a>';
             })
             ->editColumn('user_created_id', function ($leads) {
@@ -78,7 +78,9 @@ class LeadsController extends Controller
             })
             ->editColumn('user_assigned_id', function ($leads) {
                 return $leads->user->name;
-            })->make(true);
+            })
+            ->rawColumns(['title_link'])
+            ->toJson();
     }
 
     /**
@@ -88,10 +90,10 @@ class LeadsController extends Controller
      */
     public function myData()
     {
-        $leads = Lead::select('leads.*')->where('status', 1)->my()->get();
+        $leads = Lead::where('status', 1)->my();
 
-        return Datatables::of($leads)
-            ->addColumn('titlelink', function ($leads) {
+        return datatables()->eloquent($leads)
+            ->addColumn('title_link', function ($leads) {
                 return '<a href="'.route('leads.show', $leads->id).'">'.$leads->title.'</a>';
             })
             ->editColumn('user_created_id', function ($leads) {
@@ -100,7 +102,9 @@ class LeadsController extends Controller
             ->editColumn('contact_date', function ($leads) {
                 return $leads->contact_date ? with(new Carbon($leads->contact_date))
                     ->format('d/m/Y') : '';
-            })->make(true);
+            })
+            ->rawColumns(['title_link'])
+            ->toJson();
     }
 
     /**

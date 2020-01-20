@@ -159,7 +159,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -221,7 +221,7 @@ return [
         'View'       => Illuminate\Support\Facades\View::class,
         'Form'       => Collective\Html\FormFacade::class,
         'Html'       => Collective\Html\HtmlFacade::class,
-        'Datatables' => Yajra\Datatables\Datatables::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Carbon'     => Carbon\Carbon::class,
         'Excel'      => Maatwebsite\Excel\Facades\Excel::class,
         'Notifty'    => Illuminate\Support\Facades\Notification::class,

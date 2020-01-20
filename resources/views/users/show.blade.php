@@ -84,7 +84,7 @@
                     ajax: '{!! route('users.taskdata', ['id' => $user->id]) !!}',
                     columns: [
 
-                        {data: 'titlelink', name: 'title'},
+                        {data: 'title_link', name: 'title'},
                         {data: 'client_id', name: 'Client', orderable: false, searchable: false},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'deadline', name: 'deadline'},
@@ -111,9 +111,9 @@
                     ajax: '{!! route('users.clientdata', ['id' => $user->id]) !!}',
                     columns: [
 
-                        {data: 'clientlink', name: 'name'},
+                        {data: 'client_link', name: 'name'},
                         {data: 'primary_number', name: 'primary_number'},
-                        {data: 'emaillink', name: 'primary_email'},
+                        {data: 'email_link', name: 'primary_email'},
 
                     ],
                 });
@@ -126,7 +126,7 @@
                     ajax: '{!! route('users.leaddata', ['id' => $user->id]) !!}',
                     columns: [
 
-                        {data: 'titlelink', name: 'title'},
+                        {data: 'title_link', name: 'title'},
                         {data: 'client_id', name: 'Client', orderable: false, searchable: false},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'contact_date', name: 'contact_date'},

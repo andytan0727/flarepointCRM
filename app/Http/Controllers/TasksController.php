@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon;
-use Datatables;
 use App\Models\Task;
 use App\Models\Integration;
 use Illuminate\Http\Request;
@@ -63,10 +62,10 @@ class TasksController extends Controller
 
     public function anyData()
     {
-        $tasks = Task::with('client')->select('tasks.*')->where('status', 1)->get();
+        $tasks = Task::with('client')->where('status', 1);
 
-        return Datatables::of($tasks)
-            ->addColumn('titlelink', function ($tasks) {
+        return datatables()->eloquent($tasks)
+            ->addColumn('title_link', function ($tasks) {
                 return '<a href="'.route('tasks.show', $tasks->id).'">'.$tasks->title.'</a>';
             })
             ->addColumn('client_name', function ($tasks) {
@@ -82,15 +81,17 @@ class TasksController extends Controller
             })
             ->editColumn('user_assigned_id', function ($tasks) {
                 return $tasks->user->name;
-            })->make(true);
+            })
+            ->rawColumns(['title_link'])
+            ->toJson();
     }
 
     public function myData()
     {
-        $tasks = Task::with('client')->select('tasks.*')->where('status', 1)->my()->get();
+        $tasks = Task::with('client')->where('status', 1)->my();
 
-        return Datatables::of($tasks)
-            ->addColumn('titlelink', function ($tasks) {
+        return datatables()->eloquent($tasks)
+            ->addColumn('title_link', function ($tasks) {
                 return '<a href="'.route('tasks.show', $tasks->id).'">'.$tasks->title.'</a>';
             })
             ->addColumn('client_name', function ($tasks) {
@@ -103,7 +104,9 @@ class TasksController extends Controller
             ->editColumn('deadline', function ($tasks) {
                 return $tasks->created_at ? with(new Carbon($tasks->deadline))
                     ->format('d/m/Y') : '';
-            })->make(true);
+            })
+            ->rawColumns(['title_link'])
+            ->toJson();
     }
 
     /**

@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('heading')
-    <h1>{{__('My Leads')}}</h1>
+<h1>{{__('My Leads')}}</h1>
 @stop
 
 @section('content')
-    <table class="table table-striped" id="leads-table">
-        <thead>
+<table class="table table-striped" id="leads-table">
+    <thead>
         <tr>
 
             <th>{{ __('Title') }}</th>
@@ -13,8 +13,8 @@
             <th>{{ __('Deadline') }}</th>
 
         </tr>
-        </thead>
-    </table>
+    </thead>
+</table>
 @stop
 
 @push('scripts')
@@ -26,7 +26,7 @@
             ajax: '{!! route('leads.mydata') !!}',
             columns: [
 
-                {data: 'titlelink', name: 'title'},
+                {data: 'title_link', name: 'title'},
                 {data: 'user_created_id', name: 'user_created_id'},
                 {data: 'contact_date', name: 'contact_date',},
 

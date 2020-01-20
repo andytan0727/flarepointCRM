@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Carbon;
-use Datatables;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Client;
@@ -62,16 +61,18 @@ class UsersController extends Controller
         $canUpdateUser = auth()->user()->can('update-user');
         $users         = User::select(['id', 'name', 'email', 'work_number']);
 
-        return Datatables::of($users)
-            ->addColumn('namelink', function ($users) {
+        return datatables()->eloquent($users)
+            ->addColumn('name_link', function ($users) {
                 return '<a href="users/'.$users->id.'">'.$users->name.'</a>';
             })
             ->addColumn('edit', function ($user) {
                 return '<a href="'.route('users.edit', $user->id).'" class="btn btn-success"> Edit</a>';
             })
-            ->add_column('delete', function ($user) {
+            ->addColumn('delete', function ($user) {
                 return '<button type="button" class="btn btn-danger delete_client" data-client_id="'.$user->id.'" data-toggle="modal" data-target="#myModal">Delete</button>';
-            })->make(true);
+            })
+            ->rawColumns(['name_link', 'edit', 'delete'])
+            ->make(true);
     }
 
     /**
@@ -88,8 +89,8 @@ class UsersController extends Controller
         )
             ->where('user_assigned_id', $id);
 
-        return Datatables::of($tasks)
-            ->addColumn('titlelink', function ($tasks) {
+        return datatables()->eloquent($tasks)
+            ->addColumn('title_link', function ($tasks) {
                 return '<a href="'.route('tasks.show', $tasks->id).'">'.$tasks->title.'</a>';
             })
             ->editColumn('created_at', function ($tasks) {
@@ -106,6 +107,7 @@ class UsersController extends Controller
             ->editColumn('client_id', function ($tasks) {
                 return $tasks->client->name;
             })
+            ->rawColumns(['title_link', 'status'])
             ->make(true);
     }
 
@@ -123,8 +125,8 @@ class UsersController extends Controller
         )
             ->where('user_assigned_id', $id);
 
-        return Datatables::of($leads)
-            ->addColumn('titlelink', function ($leads) {
+        return datatables()->eloquent($leads)
+            ->addColumn('title_link', function ($leads) {
                 return '<a href="'.route('leads.show', $leads->id).'">'.$leads->title.'</a>';
             })
             ->editColumn('created_at', function ($leads) {
@@ -141,6 +143,7 @@ class UsersController extends Controller
             ->editColumn('client_id', function ($tasks) {
                 return $tasks->client->name;
             })
+            ->rawColumns(['title_link', 'status'])
             ->make(true);
     }
 
@@ -155,17 +158,18 @@ class UsersController extends Controller
     {
         $client = Client::select(['id', 'name', 'primary_number', 'primary_email'])->where('user_id', $id);
 
-        return Datatables::of($client)
-            ->addColumn('clientlink', function ($client) {
+        return datatables()->eloquent($client)
+            ->addColumn('client_link', function ($client) {
                 return '<a href="'.route('clients.show', $client->id).'">'.$client->name.'</a>';
             })
-            ->addColumn('emaillink', function ($client) {
+            ->addColumn('email_link', function ($client) {
                 return '<a href="mailto:'.$client->primary_email.'">'.$client->primary_email.'</a>';
             })
             ->editColumn('created_at', function ($client) {
                 return $client->created_at ? with(new Carbon($client->created_at))
                     ->format('d/m/Y') : '';
             })
+            ->rawColumns(['client_link', 'email_link'])
             ->make(true);
     }
 

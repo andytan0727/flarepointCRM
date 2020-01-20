@@ -9,7 +9,6 @@ use App\Repositories\Client\ClientRepositoryContract;
 use App\Repositories\Contact\ContactRepositoryContract;
 use App\Repositories\Setting\SettingRepositoryContract;
 use App\Repositories\User\UserRepositoryContract;
-use Datatables;
 use Illuminate\Support\Facades\DB;
 
 class ContactsController extends Controller
@@ -59,7 +58,7 @@ class ContactsController extends Controller
         $user     = auth()->user();
         $contacts = Contact::select(['contacts.*', DB::raw('clients.name AS client_name')])->join('clients', 'contacts.client_id', '=', 'clients.id');
 
-        $dt = Datatables::of($contacts)
+        $dt = datatables()->of($contacts)
             ->addColumn('name_link', function ($contacts) {
                 return '<a href="'.route('contacts.show', $contacts->id).'">'.$contacts->name.'</a>';
             })
@@ -86,7 +85,10 @@ class ContactsController extends Controller
             </form>';
         }
 
-        return $dt->addColumn('actions', $actions)->make(true);
+        return $dt
+                 ->addColumn('actions', $actions)
+                 ->rawColumns(['name_link', 'email_link', 'actions'])
+                 ->make(true);
     }
 
     /**
@@ -99,7 +101,7 @@ class ContactsController extends Controller
         $user     = auth()->user();
         $contacts = Contact::select(['contacts.*', DB::raw('clients.name AS client_name')])->join('clients', 'contacts.client_id', '=', 'clients.id')->my();
 
-        $dt = Datatables::of($contacts)
+        $dt = datatables()->of($contacts)
             ->addColumn('name_link', function ($contacts) {
                 return '<a href="'.route('contacts.show', $contacts->id).'">'.$contacts->name.'</a>';
             })
@@ -126,7 +128,10 @@ class ContactsController extends Controller
             </form>';
         }
 
-        return $dt->addColumn('actions', $actions)->make(true);
+        return $dt
+                 ->addColumn('actions', $actions)
+                 ->rawColumns(['name_link', 'email_link', 'actions'])
+                 ->make(true);
     }
 
     /**
