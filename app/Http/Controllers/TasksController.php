@@ -55,58 +55,9 @@ class TasksController extends Controller
      *
      * @return Response
      */
-    public function my()
+    public function me()
     {
         return view('tasks.my');
-    }
-
-    public function anyData()
-    {
-        $tasks = Task::with('client')->where('status', 1);
-
-        return datatables()->eloquent($tasks)
-            ->addColumn('title_link', function ($tasks) {
-                return '<a href="'.route('tasks.show', $tasks->id).'">'.$tasks->title.'</a>';
-            })
-            ->addColumn('client_name', function ($tasks) {
-                return $tasks->client->name;
-            })
-            ->editColumn('created_at', function ($tasks) {
-                return $tasks->created_at ? with(new Carbon($tasks->created_at))
-                    ->format('d/m/Y') : '';
-            })
-            ->editColumn('deadline', function ($tasks) {
-                return $tasks->created_at ? with(new Carbon($tasks->deadline))
-                    ->format('d/m/Y') : '';
-            })
-            ->editColumn('user_assigned_id', function ($tasks) {
-                return $tasks->user->name;
-            })
-            ->rawColumns(['title_link'])
-            ->toJson();
-    }
-
-    public function myData()
-    {
-        $tasks = Task::with('client')->where('status', 1)->my();
-
-        return datatables()->eloquent($tasks)
-            ->addColumn('title_link', function ($tasks) {
-                return '<a href="'.route('tasks.show', $tasks->id).'">'.$tasks->title.'</a>';
-            })
-            ->addColumn('client_name', function ($tasks) {
-                return $tasks->client->name;
-            })
-            ->editColumn('created_at', function ($tasks) {
-                return $tasks->created_at ? with(new Carbon($tasks->created_at))
-                    ->format('d/m/Y') : '';
-            })
-            ->editColumn('deadline', function ($tasks) {
-                return $tasks->created_at ? with(new Carbon($tasks->deadline))
-                    ->format('d/m/Y') : '';
-            })
-            ->rawColumns(['title_link'])
-            ->toJson();
     }
 
     /**

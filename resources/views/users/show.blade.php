@@ -81,7 +81,7 @@
               var table = $('#tasks-table').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{!! route('users.taskdata', ['id' => $user->id]) !!}',
+                    ajax: '{!! route('dt.users.tasks', $user->id) !!}',
                     columns: [
 
                         {data: 'title_link', name: 'title'},
@@ -108,7 +108,7 @@
                 $('#clients-table').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{!! route('users.clientdata', ['id' => $user->id]) !!}',
+                    ajax: '{!! route('dt.users.clients', $user->id) !!}',
                     columns: [
 
                         {data: 'client_link', name: 'name'},
@@ -123,7 +123,7 @@
               var table = $('#leads-table').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: '{!! route('users.leaddata', ['id' => $user->id]) !!}',
+                    ajax: '{!! route('dt.users.leads', $user->id) !!}',
                     columns: [
 
                         {data: 'title_link', name: 'title'},

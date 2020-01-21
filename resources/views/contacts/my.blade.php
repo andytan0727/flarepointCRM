@@ -24,7 +24,7 @@
         $('#contacts-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('contacts.mydata') !!}',
+            ajax: '{!! route('dt.myContacts') !!}',
             columns: [
                 {data: 'name_link', name: 'name'},
                 {data: 'job_title', name: 'job_title'},

@@ -25,7 +25,7 @@
             processing: true,
             serverSide: true,
 
-            ajax: '{!! route('clients.mydata') !!}',
+            ajax: '{!! route('dt.myClients') !!}',
             columns: [
 
                 {data: 'name_link', name: 'name'},

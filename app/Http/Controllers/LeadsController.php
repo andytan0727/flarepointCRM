@@ -51,60 +51,9 @@ class LeadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function my()
+    public function me()
     {
         return view('leads.my');
-    }
-
-    /**
-     * Data for Data tables.
-     *
-     * @return mixed
-     */
-    public function anyData()
-    {
-        $leads = Lead::where('status', 1);
-
-        return datatables()->eloquent($leads)
-            ->addColumn('title_link', function ($leads) {
-                return '<a href="'.route('leads.show', $leads->id).'">'.$leads->title.'</a>';
-            })
-            ->editColumn('user_created_id', function ($leads) {
-                return $leads->creator->name;
-            })
-            ->editColumn('contact_date', function ($leads) {
-                return $leads->contact_date ? with(new Carbon($leads->contact_date))
-                    ->format('d/m/Y') : '';
-            })
-            ->editColumn('user_assigned_id', function ($leads) {
-                return $leads->user->name;
-            })
-            ->rawColumns(['title_link'])
-            ->toJson();
-    }
-
-    /**
-     * Data for Data tables.
-     *
-     * @return mixed
-     */
-    public function myData()
-    {
-        $leads = Lead::where('status', 1)->my();
-
-        return datatables()->eloquent($leads)
-            ->addColumn('title_link', function ($leads) {
-                return '<a href="'.route('leads.show', $leads->id).'">'.$leads->title.'</a>';
-            })
-            ->editColumn('user_created_id', function ($leads) {
-                return $leads->creator->name;
-            })
-            ->editColumn('contact_date', function ($leads) {
-                return $leads->contact_date ? with(new Carbon($leads->contact_date))
-                    ->format('d/m/Y') : '';
-            })
-            ->rawColumns(['title_link'])
-            ->toJson();
     }
 
     /**

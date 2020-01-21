@@ -24,7 +24,7 @@
         $('#tasks-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('tasks.mydata') !!}',
+            ajax: '{!! route('dt.myTasks') !!}',
             columns: [
                 {data: 'title_link', name: 'title'},
                 {data: 'client_name', name: 'client_name'},

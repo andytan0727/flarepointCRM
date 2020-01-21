@@ -23,13 +23,12 @@
         $('#leads-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{!! route('leads.mydata') !!}',
+            ajax: '{!! route('dt.myLeads') !!}',
             columns: [
 
                 {data: 'title_link', name: 'title'},
                 {data: 'user_created_id', name: 'user_created_id'},
                 {data: 'contact_date', name: 'contact_date',},
-
             ]
         });
     });
