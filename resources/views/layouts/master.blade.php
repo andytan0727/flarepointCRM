@@ -10,7 +10,7 @@
     <link href="{{ asset('css/dropzone.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.atwho.min.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset(elixir('css/app.css')) }}">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
@@ -120,7 +120,7 @@ $('body').click(function(e) {
         </div>
         <!-- /#page-content-wrapper -->
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ asset('js/dropzone.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
