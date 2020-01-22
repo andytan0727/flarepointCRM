@@ -44,7 +44,7 @@ class ContactRepository implements ContactRepositoryContract
     public function create($requestData)
     {
         $contact = Contact::create($requestData);
-        Session()->flash('flash_message', 'Contact successfully added');
+        session()->flash('flash_message', 'Contact successfully added');
         event(new \App\Events\ContactAction($contact, self::CREATED));
     }
 
@@ -66,9 +66,9 @@ class ContactRepository implements ContactRepositoryContract
         try {
             $contact = Contact::findorFail($id);
             $contact->delete();
-            Session()->flash('flash_message', 'Contact successfully deleted');
+            session()->flash('flash_message', 'Contact successfully deleted');
         } catch (\Illuminate\Database\QueryException $e) {
-            Session()->flash('flash_message_warning', 'Contact can NOT have, leads, or tasks assigned when deleted');
+            session()->flash('flash_message_warning', 'Contact can NOT have, leads, or tasks assigned when deleted');
         }
     }
 }

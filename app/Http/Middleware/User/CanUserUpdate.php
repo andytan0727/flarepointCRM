@@ -17,7 +17,7 @@ class CanUserUpdate
     public function handle($request, Closure $next)
     {
         if (!auth()->user()->can('user-update')) {
-            Session()->flash('flash_message_warning', 'Not allowed to update user');
+            session()->flash('flash_message_warning', 'Not allowed to update user');
 
             return redirect()->route('users.index');
         }

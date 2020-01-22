@@ -17,7 +17,7 @@ class CanTaskCreate
     public function handle($request, Closure $next)
     {
         if (!auth()->user()->can('task-create')) {
-            Session()->flash('flash_message_warning', 'Not allowed to create task');
+            session()->flash('flash_message_warning', 'Not allowed to create task');
 
             return redirect()->route('tasks.index');
         }

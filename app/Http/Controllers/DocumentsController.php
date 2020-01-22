@@ -88,7 +88,7 @@ class DocumentsController extends Controller
         $destroy_path = (public_path().'/files/'.$companyname.'/'.$path);
         File::delete(public_path().'/files/'.$companyname.'/'.$path);
         $document->delete();
-        Session()->flash('flash_message', 'File has been deleted');
+        session()->flash('flash_message', 'File has been deleted');
 
         return redirect()->back();
     }

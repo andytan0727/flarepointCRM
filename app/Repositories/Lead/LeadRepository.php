@@ -45,7 +45,7 @@ class LeadRepository implements LeadRepositoryContract
 
         $lead       = Lead::create($input);
         $insertedId = $lead->id;
-        Session()->flash('flash_message', 'Lead successfully added!');
+        session()->flash('flash_message', 'Lead successfully added!');
 
         event(new \App\Events\LeadAction($lead, self::CREATED));
 

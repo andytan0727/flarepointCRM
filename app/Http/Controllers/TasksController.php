@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon;
 use App\Models\Task;
 use App\Models\Integration;
 use Illuminate\Http\Request;
@@ -120,7 +119,7 @@ class TasksController extends Controller
     public function updateStatus($id, Request $request)
     {
         $this->tasks->updateStatus($id, $request);
-        Session()->flash('flash_message', 'Task is completed');
+        session()->flash('flash_message', 'Task is completed');
 
         return redirect()->back();
     }
@@ -136,7 +135,7 @@ class TasksController extends Controller
         $clientId = $this->tasks->getAssignedClient($id)->id;
 
         $this->tasks->updateAssign($id, $request);
-        Session()->flash('flash_message', 'New user is assigned');
+        session()->flash('flash_message', 'New user is assigned');
 
         return redirect()->back();
     }
@@ -150,7 +149,7 @@ class TasksController extends Controller
     public function updateTime($id, Request $request)
     {
         $this->tasks->updateTime($id, $request);
-        Session()->flash('flash_message', 'Time has been updated');
+        session()->flash('flash_message', 'Time has been updated');
 
         return redirect()->back();
     }
@@ -172,7 +171,7 @@ class TasksController extends Controller
             $this->tasks->invoice($id, $request);
         }
         $this->invoices->create($clientId, $timeTaskId, $request->all());
-        Session()->flash('flash_message', 'Invoice created');
+        session()->flash('flash_message', 'Invoice created');
 
         return redirect()->back();
     }

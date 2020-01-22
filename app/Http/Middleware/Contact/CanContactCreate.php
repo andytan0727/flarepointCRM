@@ -17,7 +17,7 @@ class CanContactCreate
     public function handle($request, Closure $next)
     {
         if (!auth()->user()->can('contact-create')) {
-            Session()->flash('flash_message_warning', 'Not allowed to create contact!');
+            session()->flash('flash_message_warning', 'Not allowed to create contact!');
 
             return redirect()->route('contacts.index');
         }

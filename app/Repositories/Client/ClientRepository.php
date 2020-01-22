@@ -65,7 +65,7 @@ class ClientRepository implements ClientRepositoryContract
     public function create($requestData)
     {
         $client = Client::create($requestData);
-        Session()->flash('flash_message', 'Client successfully added');
+        session()->flash('flash_message', 'Client successfully added');
         event(new \App\Events\ClientAction($client, self::CREATED));
     }
 
@@ -87,9 +87,9 @@ class ClientRepository implements ClientRepositoryContract
         try {
             $client = Client::findorFail($id);
             $client->delete();
-            Session()->flash('flash_message', 'Client successfully deleted');
+            session()->flash('flash_message', 'Client successfully deleted');
         } catch (\Illuminate\Database\QueryException $e) {
-            Session()->flash('flash_message_warning', 'Client can NOT have, leads, or tasks assigned when deleted');
+            session()->flash('flash_message_warning', 'Client can NOT have, leads, or tasks assigned when deleted');
         }
     }
 

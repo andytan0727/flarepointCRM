@@ -115,7 +115,7 @@ class UsersController extends Controller
     public function update($id, UpdateUserRequest $request)
     {
         $this->users->update($id, $request);
-        Session()->flash('flash_message', 'User successfully updated');
+        session()->flash('flash_message', 'User successfully updated');
 
         return redirect()->back();
     }
@@ -134,7 +134,7 @@ class UsersController extends Controller
         if ($request->user_clients == $id ||
             $request->user_tasks == $id ||
             $request->user_leads == $id) {
-            Session()->flash('flash_message_warning', 'You may not reassign clients, leads or tasks to the user you are deleting.');
+            session()->flash('flash_message_warning', 'You may not reassign clients, leads or tasks to the user you are deleting.');
         } else {
             // are we keeping her tasks?
             if ($user->tasks()->count() > 0) {
@@ -221,7 +221,7 @@ class UsersController extends Controller
             $user->refresh();
 
             $user->delete();
-            Session()->flash('flash_message', 'User successfully deleted');
+            session()->flash('flash_message', 'User successfully deleted');
         }
 
         return redirect()->route('users.index');

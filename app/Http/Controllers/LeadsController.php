@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon;
-use Session;
-use Datatables;
-use App\Models\Lead;
 use Illuminate\Http\Request;
 use App\Http\Requests\Lead\StoreLeadRequest;
 use App\Repositories\Lead\LeadRepositoryContract;
@@ -79,7 +75,7 @@ class LeadsController extends Controller
     public function store(StoreLeadRequest $request)
     {
         $getInsertedId = $this->leads->create($request);
-        Session()->flash('flash_message', 'Lead is created');
+        session()->flash('flash_message', 'Lead is created');
 
         return redirect()->route('leads.show', $getInsertedId);
     }
@@ -87,7 +83,7 @@ class LeadsController extends Controller
     public function updateAssign($id, Request $request)
     {
         $this->leads->updateAssign($id, $request);
-        Session()->flash('flash_message', 'New user is assigned');
+        session()->flash('flash_message', 'New user is assigned');
 
         return redirect()->back();
     }
@@ -103,7 +99,7 @@ class LeadsController extends Controller
     public function updateFollowup(UpdateLeadFollowUpRequest $request, $id)
     {
         $this->leads->updateFollowup($id, $request);
-        Session()->flash('flash_message', 'New follow up date is set');
+        session()->flash('flash_message', 'New follow up date is set');
 
         return redirect()->back();
     }
@@ -135,7 +131,7 @@ class LeadsController extends Controller
     public function updateStatus($id, Request $request)
     {
         $this->leads->updateStatus($id, $request);
-        Session()->flash('flash_message', 'Lead is completed');
+        session()->flash('flash_message', 'Lead is completed');
 
         return redirect()->back();
     }

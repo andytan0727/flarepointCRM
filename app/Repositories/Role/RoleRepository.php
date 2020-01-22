@@ -81,7 +81,7 @@ class RoleRepository implements RoleRepositoryContract
         if (1 !== $role->id) {
             $role->delete();
         } else {
-            Session()->flash('flash_message_warning', 'Can not delete Administrator role');
+            session()->flash('flash_message_warning', 'Can not delete Administrator role');
         }
     }
 }

@@ -120,7 +120,7 @@ class ClientsController extends Controller
     public function update($id, UpdateClientRequest $request)
     {
         $this->clients->update($id, $request);
-        Session()->flash('flash_message', 'Client successfully updated');
+        session()->flash('flash_message', 'Client successfully updated');
 
         return redirect()->route('clients.index');
     }
@@ -146,7 +146,7 @@ class ClientsController extends Controller
     public function updateAssign($id, Request $request)
     {
         $this->clients->updateAssign($id, $request);
-        Session()->flash('flash_message', 'New user is assigned');
+        session()->flash('flash_message', 'New user is assigned');
 
         return redirect()->back();
     }

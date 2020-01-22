@@ -110,7 +110,7 @@ class ContactsController extends Controller
     public function update($id, UpdateContactRequest $request)
     {
         $this->contacts->update($id, $request);
-        Session()->flash('flash_message', 'Contact successfully updated');
+        session()->flash('flash_message', 'Contact successfully updated');
 
         return redirect()->route('contacts.show', ['id' => $id]);
     }

@@ -46,7 +46,7 @@ class RolesController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $this->roles->create($request);
-        Session()->flash('flash_message', 'Role created');
+        session()->flash('flash_message', 'Role created');
 
         return redirect()->back();
     }
@@ -59,7 +59,7 @@ class RolesController extends Controller
     public function destroy($id)
     {
         $this->roles->destroy($id);
-        Session()->flash('flash_message', 'Role deleted');
+        session()->flash('flash_message', 'Role deleted');
 
         return redirect()->route('roles.index');
     }

@@ -26,7 +26,7 @@ class CanTaskUpdateStatus
             return $next($request);
         }
         if (1 == $settingscomplete && auth()->user()->id != $task->fk_user_id_assign) {
-            Session()->flash('flash_message_warning', 'Only assigned user are allowed to close Task.');
+            session()->flash('flash_message_warning', 'Only assigned user are allowed to close Task.');
 
             return redirect()->back();
         }
