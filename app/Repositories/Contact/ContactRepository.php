@@ -64,7 +64,7 @@ class ContactRepository implements ContactRepositoryContract
     public function destroy($id)
     {
         try {
-            $contact = Contact::findorFail($id);
+            $contact = Contact::findOrFail($id);
             $contact->delete();
             session()->flash('flash_message', 'Contact successfully deleted');
         } catch (\Illuminate\Database\QueryException $e) {

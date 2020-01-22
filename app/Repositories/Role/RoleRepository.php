@@ -77,7 +77,7 @@ class RoleRepository implements RoleRepositoryContract
      */
     public function destroy($id)
     {
-        $role = Role::findorFail($id);
+        $role = Role::findOrFail($id);
         if (1 !== $role->id) {
             $role->delete();
         } else {

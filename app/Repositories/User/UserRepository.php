@@ -85,7 +85,7 @@ class UserRepository implements UserRepositoryContract
     {
         $settings    = Setting::first();
         $companyname = $settings->company;
-        $user        = User::findorFail($id);
+        $user        = User::findOrFail($id);
         $password    = bcrypt($requestData->password);
         $role        = $requestData->roles;
         $department  = $requestData->departments;

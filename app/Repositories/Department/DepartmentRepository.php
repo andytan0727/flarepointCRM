@@ -38,6 +38,6 @@ class DepartmentRepository implements DepartmentRepositoryContract
      */
     public function destroy($id)
     {
-        Department::findorFail($id)->delete();
+        Department::findOrFail($id)->delete();
     }
 }
