@@ -4,15 +4,9 @@ namespace App\Http\Controllers\DataTables;
 
 use App\Models\Lead;
 use Carbon;
-use Yajra\DataTables\DataTables;
 
 class LeadsDataTablesController extends DataTablesController
 {
-    public function __construct(DataTables $datatables)
-    {
-        parent::__construct($datatables);
-    }
-
     /**
      * Data for Data tables.
      *

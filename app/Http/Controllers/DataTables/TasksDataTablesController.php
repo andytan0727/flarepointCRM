@@ -4,15 +4,9 @@ namespace App\Http\Controllers\DataTables;
 
 use App\Models\Task;
 use Carbon;
-use Yajra\DataTables\DataTables;
 
 class TasksDataTablesController extends DataTablesController
 {
-    public function __construct(DataTables $datatables)
-    {
-        parent::__construct($datatables);
-    }
-
     public function allTasks()
     {
         $tasks = Task::with('client')->where('status', 1);

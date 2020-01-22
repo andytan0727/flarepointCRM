@@ -4,15 +4,9 @@ namespace App\Http\Controllers\DataTables;
 
 use App\Models\Client;
 use DB;
-use Yajra\DataTables\DataTables;
 
 class ClientsDataTablesController extends DataTablesController
 {
-    public function __construct(DataTables $datatables)
-    {
-        parent::__construct($datatables);
-    }
-
     public function allClients()
     {
         $user    = auth()->user();

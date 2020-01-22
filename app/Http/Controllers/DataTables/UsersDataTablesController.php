@@ -7,15 +7,9 @@ use App\Models\User;
 use App\Models\Lead;
 use App\Models\Task;
 use Carbon;
-use Yajra\DataTables\DataTables;
 
 class UsersDataTablesController extends DataTablesController
 {
-    public function __construct(DataTables $datatables)
-    {
-        parent::__construct($datatables);
-    }
-
     public function allUsers()
     {
         $canUpdateUser = auth()->user()->can('update-user');

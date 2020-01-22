@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers\DataTables;
 
-use Yajra\DataTables\DataTables;
 use App\Models\Contact;
 use DB;
 
 class ContactsDataTablesController extends DataTablesController
 {
-    public function __construct(DataTables $datatables)
-    {
-        parent::__construct($datatables);
-    }
-
     /**
      * Get all contacts to make a data table
      *

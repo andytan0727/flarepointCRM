@@ -5,7 +5,7 @@ namespace App\Http\Controllers\DataTables;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\DataTables;
 
-class DataTablesController extends Controller
+abstract class DataTablesController extends Controller
 {
     /**
      *
