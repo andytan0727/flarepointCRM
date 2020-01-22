@@ -6,6 +6,47 @@ use Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Task
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property int $status
+ * @property int $user_assigned_id
+ * @property int $user_created_id
+ * @property int $client_id
+ * @property int|null $invoice_id
+ * @property \Illuminate\Support\Carbon $deadline
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Activity[] $activity
+ * @property-read int|null $activity_count
+ * @property-read \App\Models\Client $client
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read \App\Models\User $creator
+ * @property-read mixed $assigned_user
+ * @property-read mixed $creator_user
+ * @property-read mixed $days_until_deadline
+ * @property-read \App\Models\Invoice|null $invoice
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task my()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereClientId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereDeadline($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereInvoiceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereUserAssignedId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Task whereUserCreatedId($value)
+ */
 class Task extends Model
 {
     protected $fillable = [

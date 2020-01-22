@@ -5,6 +5,76 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Client
+ *
+ * @property int $id
+ * @property string $primary_email
+ * @property string|null $primary_number
+ * @property string|null $secondary_number
+ * @property string|null $billing_address1
+ * @property string|null $billing_address2
+ * @property string|null $billing_zipcode
+ * @property string|null $billing_country
+ * @property string|null $shipping_address1
+ * @property string|null $shipping_address2
+ * @property string|null $shipping_city
+ * @property string|null $shipping_state
+ * @property string|null $shipping_zipcode
+ * @property string|null $shipping_country
+ * @property string|null $billing_city
+ * @property string|null $billing_state
+ * @property string $name
+ * @property string|null $vat
+ * @property \App\Models\Industry $industry
+ * @property string|null $company_type
+ * @property int $user_id
+ * @property int $industry_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Contact[] $contacts
+ * @property-read int|null $contacts_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Document[] $documents
+ * @property-read int|null $documents_count
+ * @property-read mixed $assigned_user
+ * @property-read mixed $formatted_billing_address
+ * @property-read mixed $formatted_shipping_address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Invoice[] $invoices
+ * @property-read int|null $invoices_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Lead[] $leads
+ * @property-read int|null $leads_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client my()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereBillingZipcode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereCompanyType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereIndustry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereIndustryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client wherePrimaryEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client wherePrimaryNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereSecondaryNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingAddress1($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingAddress2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereShippingZipcode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Client whereVat($value)
+ */
 class Client extends Model
 {
     protected $fillable = [
