@@ -109,7 +109,7 @@ class LeadRepository implements LeadRepositoryContract
      */
     public function allCompletedLeads()
     {
-        return Lead::where('status', 2)->count();
+        return Lead::whereStatus(2)->count();
     }
 
     /**
@@ -134,7 +134,7 @@ class LeadRepository implements LeadRepositoryContract
         return Lead::whereRaw(
             'date(updated_at) = ?',
             [Carbon::now()->format('Y-m-d')]
-        )->where('status', 2)->count();
+        )->whereStatus(2)->count();
     }
 
     /**
@@ -155,7 +155,7 @@ class LeadRepository implements LeadRepositoryContract
     {
         return DB::table('leads')
             ->select(DB::raw('count(*) as total, updated_at'))
-            ->where('status', 2)
+            ->whereStatus(2)
             ->whereBetween('updated_at', [Carbon::now()->startOfMonth(), Carbon::now()])->get();
     }
 
@@ -166,7 +166,7 @@ class LeadRepository implements LeadRepositoryContract
     {
         return DB::table('leads')
             ->select(DB::raw('count(*) as month, updated_at'))
-            ->where('status', 2)
+            ->whereStatus(2)
             ->groupBy(DB::raw('YEAR(updated_at), MONTH(updated_at)'))
             ->get();
     }
@@ -189,12 +189,13 @@ class LeadRepository implements LeadRepositoryContract
      */
     public function totalOpenAndClosedLeads($id)
     {
-        $open_leads = Lead::where('status', 1)
-        ->where('user_assigned_id', $id)
+        $open_leads = Lead::whereStatus(1)
+        ->whereUserAssignedId($id)
         ->count();
 
-        $closed_leads = Lead::where('status', 2)
-        ->where('user_assigned_id', $id)->count();
+        $closed_leads = Lead::whereStatus(2)
+        ->whereUserAssignedId($id)
+        ->count();
 
         return collect([$closed_leads, $open_leads]);
     }

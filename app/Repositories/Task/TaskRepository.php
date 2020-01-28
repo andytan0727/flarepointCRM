@@ -151,7 +151,7 @@ class TaskRepository implements TaskRepositoryContract
      */
     public function allCompletedTasks()
     {
-        return Task::where('status', 2)->count();
+        return Task::whereStatus(2)->count();
     }
 
     /**
@@ -186,7 +186,7 @@ class TaskRepository implements TaskRepositoryContract
     {
         return DB::table('tasks')
             ->select(DB::raw('count(*) as month, updated_at'))
-            ->where('status', 2)
+            ->whereStatus(2)
             ->groupBy(DB::raw('YEAR(updated_at), MONTH(updated_at)'))
             ->get();
     }
@@ -210,7 +210,8 @@ class TaskRepository implements TaskRepositoryContract
         return Task::whereRaw(
             'date(updated_at) = ?',
             [Carbon::now()->format('Y-m-d')]
-        )->where('status', 2)->count();
+        )->whereStatus(2)
+         ->count();
     }
 
     /**
@@ -220,7 +221,7 @@ class TaskRepository implements TaskRepositoryContract
     {
         return DB::table('tasks')
             ->select(DB::raw('count(*) as total, updated_at'))
-            ->where('status', 2)
+            ->whereStatus(2)
             ->whereBetween('updated_at', [Carbon::now()->startOfMonth(), Carbon::now()])->get();
     }
 
@@ -241,12 +242,12 @@ class TaskRepository implements TaskRepositoryContract
      */
     public function totalOpenAndClosedTasks($id)
     {
-        $open_tasks = Task::where('status', 1)
-        ->where('user_assigned_id', $id)
+        $open_tasks = Task::whereStatus(1)
+        ->whereUserAssignedId($id)
         ->count();
 
-        $closed_tasks = Task::where('status', 2)
-        ->where('user_assigned_id', $id)->count();
+        $closed_tasks = Task::whereStatus(2)
+        ->whereUserAssignedId($id)->count();
 
         return collect([$closed_tasks, $open_tasks]);
     }

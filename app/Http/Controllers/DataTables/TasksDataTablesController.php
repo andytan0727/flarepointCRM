@@ -9,7 +9,7 @@ class TasksDataTablesController extends DataTablesController
 {
     public function allTasks()
     {
-        $tasks = Task::with('client')->where('status', 1);
+        $tasks = Task::with('client')->whereStatus(1);
 
         return $this->datatables->eloquent($tasks)
             ->addColumn('title_link', function ($tasks) {
@@ -35,7 +35,7 @@ class TasksDataTablesController extends DataTablesController
 
     public function myTasks()
     {
-        $tasks = Task::with('client')->where('status', 1)->my();
+        $tasks = Task::with('client')->whereStatus(1)->my();
 
         return $this->datatables->eloquent($tasks)
             ->addColumn('title_link', function ($tasks) {

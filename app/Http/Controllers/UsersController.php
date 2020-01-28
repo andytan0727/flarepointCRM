@@ -151,7 +151,7 @@ class UsersController extends Controller
             }
 
             // clean up tasks created but not assigned to the user
-            $tasks = Task::where('user_created_id', $id)->get();
+            $tasks = Task::whereUserCreatedId($id)->get();
             if ('' == $request->user_tasks) {
                 foreach ($tasks as $task) {
                     $task->user_created_id = $task->user_assigned_id;
@@ -182,7 +182,7 @@ class UsersController extends Controller
             }
 
             // clean up leads created but not assigned to the user
-            $leads = Lead::where('user_created_id', $id)->get();
+            $leads = Lead::whereUserCreatedId($id)->get();
             if ('' == $request->user_leads) {
                 foreach ($leads as $lead) {
                     $lead->user_created_id = $lead->user_assigned_id;

@@ -14,7 +14,7 @@ class LeadsDataTablesController extends DataTablesController
      */
     public function allLeads()
     {
-        $leads = Lead::where('status', 1);
+        $leads = Lead::whereStatus(1);
 
         return $this->datatables->eloquent($leads)
             ->addColumn('title_link', function ($leads) {
@@ -41,7 +41,7 @@ class LeadsDataTablesController extends DataTablesController
      */
     public function myLeads()
     {
-        $leads = Lead::where('status', 1)->my();
+        $leads = Lead::whereStatus(1)->my();
 
         return $this->datatables->eloquent($leads)
             ->addColumn('title_link', function ($leads) {

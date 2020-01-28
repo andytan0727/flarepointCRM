@@ -24,7 +24,7 @@ class NotiftyMentionedUsers
     {
         collect($event->comment->mentionedUsers())
         ->map(function ($name) {
-            return User::where('name', $name)->first();
+            return User::whereName($name)->first();
         })
         ->filter()
         ->each(function ($user) use ($event) {

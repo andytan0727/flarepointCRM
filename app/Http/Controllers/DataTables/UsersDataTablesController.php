@@ -34,7 +34,7 @@ class UsersDataTablesController extends DataTablesController
         $tasks = Task::select(
             ['id', 'title', 'created_at', 'deadline', 'user_assigned_id', 'client_id', 'status']
         )
-            ->where('user_assigned_id', $user->id);
+            ->whereUserAssignedId($user->id);
 
         return $this->datatables->eloquent($tasks)
             ->addColumn('title_link', function ($tasks) {
@@ -63,7 +63,7 @@ class UsersDataTablesController extends DataTablesController
         $leads = Lead::select(
             ['id', 'title', 'created_at', 'contact_date', 'user_assigned_id', 'client_id', 'status']
         )
-            ->where('user_assigned_id', $user->id);
+            ->whereUserAssignedId($user->id);
 
         return $this->datatables->eloquent($leads)
             ->addColumn('title_link', function ($leads) {
@@ -96,7 +96,7 @@ class UsersDataTablesController extends DataTablesController
      */
     public function clients(User $user)
     {
-        $client = Client::select(['id', 'name', 'primary_number', 'primary_email'])->where('user_id', $user->id);
+        $client = Client::select(['id', 'name', 'primary_number', 'primary_email'])->whereUserId($user->id);
 
         return $this->datatables->eloquent($client)
             ->addColumn('client_link', function ($client) {
