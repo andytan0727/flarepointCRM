@@ -1,3 +1,5 @@
+# This repo will be archived
+
 ![Flarepoint Logo](https://cloud.githubusercontent.com/assets/15610490/16813901/ebfd6d94-4933-11e6-9fee-655f6193f38e.png)
 
 ### Flarepoint CRM [![Build Status](https://travis-ci.org/Bottelet/Flarepoint-crm.svg?branch=develop)](https://travis-ci.org/Bottelet/Flarepoint-crm)
